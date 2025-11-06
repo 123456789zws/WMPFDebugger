@@ -7,23 +7,46 @@
 
 ## 支持状态
 
-目前仅支持小程序，尚未支持内建浏览器页面
-
 支持的 WMPF 版本：
 
-* 13341 (最新)
+* 16815 (最新)
+* 16771
+* 16467 (credit @51-xinyu)
+* 16389 (credit @liding58)
+* 16203 (credit @liding58)
+* 16133 (credit @liding58)
+
+<details>
+
+<summary>更早版本</summary>
+
+* 14315 (credit @liding58)
+* 14199
+* 14161
+* 13909
+* 13871
+* 13655
+* 13639
+* 13487
+* 13341
 * 13331
 * 11633
 * 11581 (成功连接但会随后渲染进程 crash，请自行测试)
 
+</details>
+
+如何调试微信内置浏览器页面：参见 [EXTENSION.md](EXTENSION.md)。注意，目前该方法仅有基础调试功能
+
 如何检查版本：打开任务管理器，找到 WeChatAppEx 进程，右键，打开文件所在的位置，检查在 `RadiumWMPF` 和 `extracted` 之间的数字
 
-如何适配到其他版本：你可以在 `frida/hook.js` 中找到交叉引用的字符串。这些字符串通常只有唯一的引用方便定位相关函数。另外，你也可以提交版本适配的 Issue，我会尝试适配该版本如果我有相应的版本的 binary。仅更新版本的适配请求会被考虑
+如何适配到其他版本：参见 [ADAPTATION.md](ADAPTATION.md)。另外，你也可以提交版本适配的 Issue，我会尝试适配该版本如果我有相应的版本的 binary。仅更新版本的适配请求会被考虑
+
+如何更新到最新的 WMPF 版本（微信版本 < 4.x）：搜索框输入 `:showcmdwnd`（不要按回车触发搜索）弹出命令窗口，输入 `/plugin set_grayvalue=202&check_update_force` 并回车等待更新（如果有新版本）。重启微信以生效。
 
 
 ## 准备
 
-* node.js
+* node.js (已在 LTS v22 上测试)
     - yarn 包管理器
 * 基于的 chromium 浏览器，例如 Chrome, Edge, 等等
 

@@ -42,15 +42,47 @@ const patchCDPFilter = (base, offset, version) => {
 const onLoadStartHook = (a1, a2, version) => {
     let structOffset = [1208, 1160, 16, 488];
     switch (version) {
-        case 11331:
+        case 13331:
         case 13341:
+        case 13487:
+        case 13639:
+        case 14315:
             structOffset = [1272, 1224, 16, 488];
+            break;
+        case 13655:
+            structOffset = [1280, 1232, 16, 488];
+            break;
+        case 13871:
+        case 13909:
+        case 14161:
+        case 14199:
+        case 16133:
+        case 16203:
+        case 16389:
+        case 16467:
+        case 16771:
+            structOffset = [1360, 1312, 16, 488];
+            break;
+        case 16815:
+            structOffset = [1416, 1360, 16, 488];
             break;
     }
     const passArgs = a1.add(56).readPointer().add(structOffset[0]).readPointer();
     const passConditionPtr = passArgs.add(8).readPointer().add(structOffset[1]).readPointer().add(structOffset[2]).readPointer().add(structOffset[3]);
-    VERBOSE && console.log("[hook] scene:", passConditionPtr.readInt());
-    const sceneNumberArray = [1256];
+    console.log("[hook] scene:", passConditionPtr.readInt());
+
+    // 1007: from issue #80
+    // 1008: from issue #53
+    // 1027: from issue #78
+    // 1035: from issue #78
+    // 1053: from issue #25
+    // 1074: from issue #32
+    // 1145: from search
+    // 1256: from recent
+    // 1260: from frequently used
+    // 1302: from services
+    // 1308: minigame?
+    const sceneNumberArray = [1005, 1007, 1008, 1027, 1035, 1053, 1074, 1145, 1256, 1260, 1302, 1308];
     if (!sceneNumberArray.includes(passConditionPtr.readInt())) {
         return;
     }

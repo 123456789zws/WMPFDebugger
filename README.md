@@ -9,23 +9,47 @@ This debugger (tweak) exploits Remote Debug feature provided by wechatdevtools a
 
 ## Support Status
 
-Note: Currently only miniapp component is supported.
 
 Version histories:
 
-* 13341 (latest)
+* 16815 (latest)
+* 16771
+* 16467 (credit @51-xinyu)
+* 16389 (credit @liding58)
+* 16203 (credit @liding58)
+* 16133 (credit @liding58)
+
+<details>
+
+<summary>Older versions</summary>
+
+* 14315 (credit @liding58)
+* 14199
+* 14161
+* 13909
+* 13871
+* 13655
+* 13639
+* 13487
+* 13341
 * 13331
 * 11633
 * 11581 (unstable, will connect but crash renderer, feel free to test)
 
+</details>
+
+To debug web pages of WeChat embedded browser, please refer to [EXTENSION.md](EXTENSION.md). Note that this feature has many limitations currently and is simply a basic workaround.
+
 To check your installed version, navigate to Task Manager -> WeChatAppEx -> Right click -> Open file location -> Check the number between `RadiumWMPF` and `extracted`.
 
-To adapt to another version, find x-refs mentioned in `frida/hook.js` in IDA Pro to locate function offsets. Alternatively, you can submit an issue for new version adaption and I will try that if I have the binary. Note that only newer version adaption requests will be considered.
+To adapt to another version, please find the instructions in [ADAPTATION.md](ADAPTATION.md). Alternatively, you can submit an issue for new version adaption and I will try that if I have the binary. Note that only newer version adaption requests will be considered.
 
+
+To upgrade to the latest WMPF (WeChat version < 4.x), type in `:showcmdwnd` in the search bar (do not hit enter), then the command window should pop up. Type in `/plugin set_grayvalue=202&check_update_force` and hit enter, the latest WMPF plugin should be downloaded, if any updates are available. Restart the WeChat to apply plugin upgrade.
 
 ## Prerequisites
 
-* node.js
+* node.js (tested on LTS v22)
     - yarn
 * chromium-based browsers (e.g., Chrome, Edge, etc.)
 
